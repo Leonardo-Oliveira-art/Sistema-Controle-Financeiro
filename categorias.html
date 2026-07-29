@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Categorias | Controle Financeiro</title>
+    <meta name="description" content="Crie e organize categorias de receitas e despesas com cores personalizadas." />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+      <div class="conteudo">
+        <header class="topbar" id="topbar"></header>
+        <main>
+          <div class="barra-topo">
+            <h2>Categorias</h2>
+            <span class="espaco"></span>
+            <button class="btn" id="btn-novo">+ Nova categoria</button>
+          </div>
+
+          <div class="grid grid-2" style="margin-bottom: 16px">
+            <div class="card"><h3>Categorias de receita</h3><div class="valor verde" id="qtd-receita">0</div></div>
+            <div class="card"><h3>Categorias de despesa</h3><div class="valor vermelho" id="qtd-despesa">0</div></div>
+          </div>
+
+          <div class="filtros">
+            <select id="filtro-tipo">
+              <option value="">Todos os tipos</option>
+              <option value="receita">Receitas</option>
+              <option value="despesa">Despesas</option>
+            </select>
+          </div>
+
+          <div class="card tabela-wrap">
+            <table>
+              <thead><tr><th>Nome</th><th>Tipo</th><th>Cor</th><th>Ações</th></tr></thead>
+              <tbody id="corpo-tabela"></tbody>
+            </table>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <div class="modal" id="modal">
+      <div class="modal-caixa">
+        <h3 id="modal-titulo">Nova categoria</h3>
+        <form id="form">
+          <div class="campo"><label for="f-nome">Nome</label><input id="f-nome" required maxlength="60" /></div>
+          <div class="linha-2">
+            <div class="campo">
+              <label for="f-tipo">Tipo</label>
+              <select id="f-tipo">
+                <option value="receita">Receita</option>
+                <option value="despesa">Despesa</option>
+              </select>
+            </div>
+            <div class="campo"><label for="f-cor">Cor</label><input id="f-cor" type="color" value="#22c55e" style="height: 42px" /></div>
+          </div>
+          <div class="modal-acoes">
+            <button type="button" class="btn btn-cinza" id="btn-cancelar">Cancelar</button>
+            <button type="submit" class="btn">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/categorias.js"></script>
+    <script>
+      iniciarCategorias();
+    </script>
+  </body>
+</html>

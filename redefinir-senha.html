@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redefinir senha | Controle Financeiro</title>
+    <meta name="description" content="Defina uma nova senha para acessar o Controle Financeiro." />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="login-wrap">
+      <div class="login-card">
+        <div class="login-head">
+          <div class="login-logo">🔒</div>
+          <h1>Nova senha</h1>
+          <p>Digite a nova senha da sua conta.</p>
+        </div>
+        <form id="form-nova">
+          <div class="campo">
+            <label for="s1">Nova senha</label>
+            <input id="s1" type="password" required minlength="6" placeholder="Mínimo 6 caracteres" />
+          </div>
+          <div class="campo">
+            <label for="s2">Confirmar senha</label>
+            <input id="s2" type="password" required minlength="6" placeholder="Repita a senha" />
+          </div>
+          <button class="btn btn-bloco" type="submit">Salvar senha</button>
+          <a class="link-btn" href="index.html" style="display:block;text-align:center">Voltar para o login</a>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+      document.getElementById("form-nova").onsubmit = async (e) => {
+        e.preventDefault();
+        const s1 = document.getElementById("s1").value;
+        const s2 = document.getElementById("s2").value;
+        if (s1 !== s2) return toast("As senhas não conferem.", "erro");
+        const { error } = await db.auth.updateUser({ password: s1 });
+        if (error) return toast(error.message, "erro");
+        toast("Senha alterada com sucesso!", "ok");
+        setTimeout(() => (location.href = "dashboard.html"), 1200);
+      };
+    </script>
+  </body>
+</html>

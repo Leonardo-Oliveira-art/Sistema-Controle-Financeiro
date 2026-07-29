@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard | Controle Financeiro</title>
+    <meta name="description" content="Visão geral das suas finanças: saldo, receitas, despesas e contas a vencer." />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" id="sidebar"></aside>
+      <div class="conteudo">
+        <header class="topbar" id="topbar"></header>
+        <main>
+          <div class="barra-topo"><h2>Visão geral do mês</h2></div>
+
+          <div class="grid grid-4" style="margin-bottom: 18px">
+            <div class="card"><h3>Receitas do mês</h3><div class="valor verde" id="card-receitas">R$ 0,00</div></div>
+            <div class="card"><h3>Despesas do mês</h3><div class="valor vermelho" id="card-despesas">R$ 0,00</div></div>
+            <div class="card"><h3>Saldo</h3><div class="valor azul" id="card-saldo">R$ 0,00</div></div>
+            <div class="card">
+              <h3>Contas a pagar</h3>
+              <div class="valor amarelo" id="card-contas">R$ 0,00</div>
+              <div style="font-size: 12px; color: var(--cinza-texto); margin-top: 4px" id="card-contas-qtd"></div>
+            </div>
+          </div>
+
+          <div class="grid grid-2" style="margin-bottom: 18px">
+            <div class="card">
+              <h3>Receitas x Despesas (6 meses)</h3>
+              <div style="height: 280px"><canvas id="grafico-evolucao"></canvas></div>
+            </div>
+            <div class="card">
+              <h3>Despesas por categoria (mês atual)</h3>
+              <div style="height: 280px"><canvas id="grafico-categorias"></canvas></div>
+            </div>
+          </div>
+
+          <div class="card tabela-wrap">
+            <h3 style="margin-bottom: 10px">Próximos vencimentos</h3>
+            <table>
+              <thead><tr><th>Vencimento</th><th>Conta</th><th>Situação</th><th>Valor</th></tr></thead>
+              <tbody id="proximas-contas"></tbody>
+            </table>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+      iniciarDashboard();
+    </script>
+  </body>
+</html>
